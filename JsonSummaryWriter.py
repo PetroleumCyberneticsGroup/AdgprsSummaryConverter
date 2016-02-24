@@ -62,6 +62,9 @@ class WellData:
         return self.wells
 
 class JsonSummaryWriter:
+    """
+    Main class. Initializes the data classes and writes the JSON file.
+    """
     def __init__(self, summary, output_path):
         self.field_data = FieldData(summary)
         self.well_data = WellData(summary)
