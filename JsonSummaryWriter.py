@@ -9,8 +9,8 @@ class FieldData:
     def __init__(self, summary):
         self.field = {
             'NumWells' : summary.num_wells,
+            'TIME' : summary.vec_time_steps.tolist(),
             'Properties' : {
-                'TIME' : summary.vec_time_steps.tolist(),
                 'FGPT' : summary.vec_gas_cumulative_field.tolist(),
                 'FOPT' : summary.vec_oil_cumulative_field.tolist(),
                 'FWPT' : summary.vec_water_cumulative_field.tolist(),
