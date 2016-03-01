@@ -28,6 +28,7 @@ class Well:
     def __init__(self, single_well_states, vec_time_steps):
         self._well_states = single_well_states
         self._phase_rates = single_well_states['vPhaseRates']
+        self._int_data = single_well_states['vIntData']
         self._phase_rates_sc = single_well_states['vPhaseRatesAtSC']
         self.num_perforations = len(single_well_states['vTemperatures'][0])
         self.vec_bhp = np.array([p[0] for p in self._well_states['vPressures']])
@@ -92,7 +93,7 @@ class Well:
 
     @property
     def is_injector(self):
-        return self.vec_water_cumulative[-1] < -1.0 or self.vec_gas_cumulative[-1] < -1
+        return self._int_data[0][0] == 1
 
 class AdgprsSummary:
     """ This class represents a single ADGPRS summary. """
