@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../AdgprsSummaryConverter/.idea/AdgprsSummaryConverter.iml" filepath="$PROJECT_DIR$/../AdgprsSummaryConverter/.idea/AdgprsSummaryConverter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/AdgprsSummaryConverter.iml" filepath="$PROJECT_DIR$/.idea/AdgprsSummaryConverter.iml" />
     </modules>
   </component>
 </project>
