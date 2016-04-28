@@ -33,17 +33,35 @@ class Well:
         self.num_perforations = len(single_well_states['vTemperatures'][0])
         self.vec_bhp = np.array([p[0] for p in self._well_states['vPressures']])
         self.vec_time_steps = vec_time_steps
+
+        # BLACK OIL SYSTEM
+        # self.vec_gas_rates_at_sc = np.array([p[0] for p in self._phase_rates_sc])
+        # self.vec_gas_cumulative_at_sc = accumulate(self.vec_time_steps, self.vec_gas_rates_at_sc)
+        # self.vec_oil_rates_at_sc = np.array([p[1] for p in self._phase_rates_sc])
+        # self.vec_oil_cumulative_at_sc = accumulate(self.vec_time_steps, self.vec_oil_rates_at_sc)
+        # self.vec_water_rates_at_sc = np.array([p[2] for p in self._phase_rates_sc])
+
+        # DEAD OIL SYSTEM
         self.vec_gas_rates_at_sc = np.array([p[0] for p in self._phase_rates_sc])
         self.vec_gas_cumulative_at_sc = accumulate(self.vec_time_steps, self.vec_gas_rates_at_sc)
-        self.vec_oil_rates_at_sc = np.array([p[1] for p in self._phase_rates_sc])
+        self.vec_oil_rates_at_sc = np.array([p[0] for p in self._phase_rates_sc])
         self.vec_oil_cumulative_at_sc = accumulate(self.vec_time_steps, self.vec_oil_rates_at_sc)
-        self.vec_water_rates_at_sc = np.array([p[2] for p in self._phase_rates_sc])
+        self.vec_water_rates_at_sc = np.array([p[1] for p in self._phase_rates_sc])
+
         self.vec_water_cumulative_at_sc = accumulate(self.vec_time_steps, self.vec_water_rates_at_sc)
         self.perforations = []
         for p in range(self.num_perforations):
-            p_grat = np.array([phr[p*3+0] for phr in self._phase_rates])
-            p_orat = np.array([phr[p*3+1] for phr in self._phase_rates])
-            p_wrat = np.array([phr[p*3+2] for phr in self._phase_rates])
+
+            # BLACK OIL SYSTEM
+            # p_grat = np.array([phr[p*3+0] for phr in self._phase_rates])
+            # p_orat = np.array([phr[p*3+1] for phr in self._phase_rates])
+            # p_wrat = np.array([phr[p*3+2] for phr in self._phase_rates])
+
+            # DEAD OIL SYSTEM
+            p_grat = np.array([phr[p*2+0] for phr in self._phase_rates])
+            p_orat = np.array([phr[p*2+0] for phr in self._phase_rates])
+            p_wrat = np.array([phr[p*2+1] for phr in self._phase_rates])
+
             p_pres = np.array([pr[p+1] for pr in self._well_states['vPressures']])
             p_temp = np.array([t[p] for t in self._well_states['vTemperatures']])
             p_dens = np.array([d[p] for d in self._well_states['vAverageDensity']])
